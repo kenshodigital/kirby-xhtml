@@ -10,11 +10,16 @@ use Kirby\Cms\App;
  */
 App::plugin('kenshodigital/templates-xml', [
     'hooks' => [
-        Template::HOOK => function (string $output, string $type): string {
-            if (\in_array($type, Xml::TYPES)) {
-                $output = (new Xml(new DOMDocument))->process($output);
+        /**
+         * Ensures well-formed output and
+         * strips whitespace between nodes
+         * for XML templates.
+         */
+        'page.render:after' => function (string $contentType, array $data, string $html): string {
+            if (\in_array($contentType, Xml::TYPES)) {
+                $html = (new Xml(new DOMDocument))->process($html);
             }
-            return $output;
+            return $html;
         },
     ],
 ]);

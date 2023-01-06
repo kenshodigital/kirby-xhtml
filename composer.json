@@ -2,24 +2,24 @@
     "name":        "kenshodigital/templates-xml",
     "description": "Post-processing for XML and XHTML templates.",
     "type":        "kirby-plugin",
-    "version":     "1.0.0",
+    "version":     "2.0.0",
     "homepage":    "https://github.com/kenshodigital/templates-xml",
     "license":     "MIT",
     "authors":
     [
         {
             "name":  "Jens Scherbl",
-            "email": "jens@scherbl.com"
+            "email": "mail@kensho.digital"
         }
     ],
     "require":
     {
-        "php":                         "^8.1",
+        "php":                         "^8.2",
         "ext-dom":                     "*",
         "ext-libxml":                  "*",
-        "getkirby/cms":                "^3.7",
+        "getkirby/cms":                "^3.8.3",
         "getkirby/composer-installer": "^1.2",
-        "kenshodigital/templates":     "^1.0"
+        "kenshodigital/templates":     "^2.0"
     },
     "autoload":
     {
