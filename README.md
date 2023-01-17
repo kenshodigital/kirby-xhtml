@@ -1,2 +1,5 @@
-# templates-xml
-Post-processing for XML and XHTML templates. Ensures well-formed output and strips whitespace between nodes. 
+# Kirby XHTML
+
+Ensures well-formed XML and XHTML output for [Kirby][1] templates and strips whitespace between nodes.
+
+[1]: https://getkirby.com

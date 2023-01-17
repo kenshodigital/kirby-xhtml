@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Kenshō\Templates;
+namespace Kenshō\XHTML;
 
 use DOMDocument;
 
 /**
- * Ensures well-formed XML output and
- * strips whitespace between nodes.
+ * Ensures well-formed XML and XHTML
+ * output and strips whitespace between
+ * nodes.
  */
-class Xml implements Processor
+readonly class XMLProcessor
 {
     public const TYPES = [
         'htm',
@@ -20,6 +21,8 @@ class Xml implements Processor
         'xsl',
     ];
 
+    private const XML_DECLARATION = '<?xml version="1.0" encoding="utf-8"?>';
+
     public function __construct(
         private readonly DOMDocument $document
     ) {
@@ -28,7 +31,7 @@ class Xml implements Processor
 
     public function process(string $output): string
     {
-        $this->document->loadXML($output);
+        $this->document->loadXML(self::XML_DECLARATION . $output);
 
         return $this->document->saveXML();
     }

@@ -1,9 +1,9 @@
 {
-    "name":        "kenshodigital/templates-xml",
-    "description": "Post-processing for XML and XHTML templates.",
+    "name":        "kenshodigital/kirby-xhtml",
+    "description": "Ensures well-formed XML and XHTML output for Kirby templates.",
     "type":        "kirby-plugin",
-    "version":     "2.0.0",
-    "homepage":    "https://github.com/kenshodigital/templates-xml",
+    "version":     "1.0.0",
+    "homepage":    "https://github.com/kenshodigital/kirby-xhtml",
     "license":     "MIT",
     "authors":
     [
@@ -17,15 +17,14 @@
         "php":                         "^8.2",
         "ext-dom":                     "*",
         "ext-libxml":                  "*",
-        "getkirby/cms":                "^3.8.3",
-        "getkirby/composer-installer": "^1.2",
-        "kenshodigital/templates":     "^2.0"
+        "getkirby/cms":                "^3.9",
+        "getkirby/composer-installer": "^1.2"
     },
     "autoload":
     {
         "psr-4":
         {
-            "Kenshō\\Templates\\": "./src/"
+            "Kenshō\\Xhtml\\": "./src/"
         }
     }
 }
