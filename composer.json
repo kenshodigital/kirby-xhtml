@@ -2,7 +2,7 @@
     "name":        "kenshodigital/kirby-xhtml",
     "description": "Ensures well-formed XML and XHTML output for Kirby templates.",
     "type":        "kirby-plugin",
-    "version":     "1.0.1",
+    "version":     "1.0.0",
     "homepage":    "https://github.com/kenshodigital/kirby-xhtml",
     "license":     "MIT",
     "authors":
