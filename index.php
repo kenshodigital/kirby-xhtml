@@ -6,19 +6,10 @@ declare(strict_types=1);
 
 namespace Kenshō\XHTML;
 
-use DOMDocument;
+use DOMImplementation;
 use Kirby\Cms\App;
 
-const XML = [
-    'htm',
-    'html',
-    'rss',
-    'xht',
-    'xhtml',
-    'xml',
-    'xsl',
-];
-const XHTML = [
+const HTML = [
     'htm',
     'html',
     'xht',
@@ -27,19 +18,24 @@ const XHTML = [
 App::plugin('kensho/xhtml', [
     'hooks' => [
         /**
-         * Ensures well-formed XML and XHTML
-         * output and strips whitespace between
-         * nodes.
+         * Ensures well-formed XHTML output and
+         * removes whitespace between nodes.
          */
         'page.render:after' => function (string $contentType, array $data, string $html): string {
-            if (\in_array($contentType, XML)) {
-                $document                     = new DOMDocument;
-                $document->preserveWhiteSpace = FALSE;
-                $document->loadXML($html);
+            if (\in_array($contentType, HTML)) {
+                $dom                          = new DOMImplementation;
+                $doctype                      = $dom->createDocumentType('html');
+                $document                     = $dom->createDocument(null, '', $doctype);
+                $document->xmlVersion         = '1.0';
+                $document->encoding           = 'utf-8';
+                $document->preserveWhiteSpace = false;
+                $fragment                     = $document->createDocumentFragment();
 
-                if (\in_array($contentType, XHTML)) {
-                    App::instance()->response()->type('application/xhtml+xml');
-                }
+                $fragment->appendXML($html);
+                $document->appendChild($fragment);
+
+                App::instance()->response()->type('application/xhtml+xml');
+
                 return $document->saveXML();
             }
             return $html;
