@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Kenshō\XHTML;
 
+use DOMDocument;
 use DOMImplementation;
 use Kirby\Cms\App;
 
@@ -28,11 +29,13 @@ App::plugin('kensho/xhtml', [
                 $document                     = $dom->createDocument(null, '', $doctype);
                 $document->xmlVersion         = '1.0';
                 $document->encoding           = 'utf-8';
-                $document->preserveWhiteSpace = false;
                 $fragment                     = $document->createDocumentFragment();
-
                 $fragment->appendXML($html);
                 $document->appendChild($fragment);
+                $xml                          = $document->saveXML();
+                $document                     = new DOMDocument('1.0', 'utf-8');
+                $document->preserveWhiteSpace = false;
+                $document->loadXML($xml);
 
                 App::instance()->response()->type('application/xhtml+xml');
 
